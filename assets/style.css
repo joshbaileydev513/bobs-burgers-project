@@ -1,0 +1,25 @@
+#left {
+    width: 200px;
+    position: relative;
+    border: 8px black solid;
+    background-color: lightblue;
+}
+
+#go-button {
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.season-select, .episode-select {
+    padding: 10px;
+    font-size: 20px;
+    
+}
+
