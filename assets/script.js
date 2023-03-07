@@ -1,17 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
-  });
+var seasonNumber = $("dropdown1").val();
+var episodeNumber = $("dropdown2").val();
 
-  $('.dropdown-trigger').dropdown();
 
-var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/?episode=10&season=3";
+var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/?episode=" + episodeNumber + "&season=" + seasonNumber;
+var endcreditsApi ="https://bobsburgers-api.herokuapp.com/endCreditsSequence/?episode=10&season=3";
+
+
+$("select").formSelect();
 
 $("#go-button").click(function () {
-    console.log("work");
+    console.log($("#dropdown1").val())
+    console.log($("#dropdown2").val())
     $("p").remove();
     $("#info-picture").remove();
-
     var burgerPara = document.createElement("p");
     var textBurger = document.createTextNode("Burger of the day: ");
     burgerPara.setAttribute("id", "info-text");
@@ -36,7 +37,6 @@ $("#go-button").click(function () {
         })
         .then(function (data) {
             console.log(data);
-            console.log(data.length);
             for (var i = 0; i < data.length; i++) {
                 var burgerName = data[i].name + "|";
                 var burgerPrice = data[i].price + "|";
@@ -52,6 +52,22 @@ $("#go-button").click(function () {
             }
 
 
+        })
+
+        fetch(endcreditsApi)
+        .then(function (respone) {
+            return respone.json();
+        })
+        .then(function (data) {
+            var endcreditsImage = data[0].image;
+            console.log(endcreditsImage);
+
+            var endImage = document.createElement("img");
+            var creditsImage = document.createTextNode(endcreditsImage);
+            endImage.setAttribute("id", "info-text");
+            endImage.appendChild(creditsImage);
+
+            
         })
 
 });
