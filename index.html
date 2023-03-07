@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,80 +8,82 @@
     <meta name="description" content="Bob's Burgers of the Day">
     <meta name="keywords" content="Bob's Burgers, Burger of the Day, Bob's Burgers fan Page">
     <meta name="author" content="Joshua Bailey, ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Bob's Burgers of the Day</title>
 </head>
+
 <body>
     <nav>
-            <h1>
-                <i><a href="index.html"><img src="assets/images/burger-pic.png" width="20px" height="20px"></a> Bob's Burger Biography</i>
-            </h1>
+        <div class="nav-wrapper">
+            <span><a href="index.html"><img src="assets/images/burger-pic.png" width="25px" height="25px"></a>Bob's Burger Biography</span>
+        </div>
     </nav>
     <!-- NavBar/Header Above ↑ - Josh Bailey -->
 
-    <div id="left">
-        <div class="season-select">
-            <section>
-                <label for="bySeason">Please Choose a Season</label>
-                <select id="bySeason" class="current">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                </select>
-            </section> 
+    <form id="left">
+        <div class="season-select input-field">
+            <select id="dropdown1">
+                <option value="" disabled selected>Choose your Season</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+
+            </select>
+            <label>Choose your Season</label>
         </div>
 
-        <div class="episode-select">
-            <section>
-                <label for="byEpisode">Please Choose an Episode</label>
-                <select id="byEpisode">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                </select> 
-            </section>
+        <div class="episode-select input-field">
+            <select id="dropdown2">
+                <option value="" disabled selected>Choose your Episode</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+
+            </select>
+            <label>Choose your Episode</label>
         </div>
 
         <button id="go-button" type="button">Go</button>
-    </div>
+    </form>
     <!-- Season/Episode Container Above ↑ - Tony Adimey -->
-    
+
     <div id="info">
         <p id="info-text">
             Bob Belcher is a third-generation restaurateur who runs Bob's Burgers with his loving wife and
-            their three children. Bob believes his burgers speak for themselves and isn't afraid to offer a 
-            variety of off beat creations (like the ones you will find here). Bob's wife, Linda, supports his 
+            their three children. Bob believes his burgers speak for themselves and isn't afraid to offer a
+            variety of off beat creations (like the ones you will find here). Bob's wife, Linda, supports his
             dream but is becoming sick of the slow times, as the restaurant is constantly in danger of going
-            out of business. The main competition to Bob's Burgers is a busy pasta joint located across the 
+            out of business. The main competition to Bob's Burgers is a busy pasta joint located across the
             street that is run by bob's nemesis, Jimmy pesto. Despite the challenges, which includes consistent
             harassments from Linda's ex-a health inspector - Bob tries to keep the grill sizzling both literally
             and metaphorically.
@@ -91,6 +94,8 @@
     </div>
     <!-- Info Container Above ↑ - Alfredo Jimenez -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
+
 </html>
