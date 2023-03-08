@@ -1,6 +1,5 @@
 var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/";
 var endcreditsApi = "https://bobsburgers-api.herokuapp.com/endCreditsSequence/";
-//var imdbApi = "https://imdb-api.com/en/API/SeasonEpisodes/k_h9zw3q8g/tt0411008/1";
 
 
 $("select").formSelect();
