@@ -1,16 +1,14 @@
-var seasonNumber = $("dropdown1").val();
-var episodeNumber = $("dropdown2").val();
 
-
-var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/?episode=" + episodeNumber + "&season=" + seasonNumber;
-var endcreditsApi ="https://bobsburgers-api.herokuapp.com/endCreditsSequence/?episode=10&season=3";
+var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/";
+var endcreditsApi = "https://bobsburgers-api.herokuapp.com/endCreditsSequence/?episode=2&season=1";
+var imdbApi = "https://imdb-api.com/en/API/SeasonEpisodes/k_h9zw3q8g/tt0411008/1";
 
 
 $("select").formSelect();
 
 $("#go-button").click(function () {
-    console.log($("#dropdown1").val())
-    console.log($("#dropdown2").val())
+    console.log($("#dropdown1").val());
+    console.log($("#dropdown2").val());
     $("p").remove();
     $("#info-picture").remove();
     var burgerPara = document.createElement("p");
@@ -38,36 +36,38 @@ $("#go-button").click(function () {
         .then(function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
-                var burgerName = data[i].name + "|";
-                var burgerPrice = data[i].price + "|";
+                if (data[i].season == $("#dropdown1").val() && data[i].episode == $("#dropdown2").val()) {
+                    var burgerName = data[i].name + "  ";
+                    var burgerPrice = data[i].price + "  ";
 
-                var burgerText = document.createTextNode(burgerName);
-                burgerPara.appendChild(burgerText);
+                    var burgerText = document.createTextNode(burgerName);
+                    burgerPara.appendChild(burgerText);
 
-                var priceText = document.createTextNode(burgerPrice);
-                pricePara.appendChild(priceText);
+                    var priceText = document.createTextNode(burgerPrice);
+                    pricePara.appendChild(priceText);
 
-                console.log(burgerName);
-                console.log(burgerPrice);
+                    console.log(burgerName);
+                    console.log(burgerPrice);
+                }
             }
-
 
         })
 
-        fetch(endcreditsApi)
+
+    fetch(endcreditsApi)
         .then(function (respone) {
             return respone.json();
         })
         .then(function (data) {
             var endcreditsImage = data[0].image;
-            console.log(endcreditsImage);
+        })
 
-            var endImage = document.createElement("img");
-            var creditsImage = document.createTextNode(endcreditsImage);
-            endImage.setAttribute("id", "info-text");
-            endImage.appendChild(creditsImage);
-
-            
+    fetch(imdbApi)
+        .then(function (respone) {
+            return respone.json();
+        })
+        .then(function (data) {
+            console.log(data);
         })
 
 });
