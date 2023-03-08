@@ -45,17 +45,24 @@
     margin-right: 300px;
     border: 10px solid;
     background-color: #8cc2f5;
+    display: grid;
+    place-items: center;
 }
+
 
 #info-text {
     padding: 30px;
     text-align: center;
+    font-size: 30px;
+    font-family: sans-serif;
 }
 
 #info-picture {
-    width: 200px;
-    margin-left: 150px;
+    width: 400px;
+    height: 300px;
+    /* margin-left: 150px; */
 }
+
 
 nav {
     color: #ED1B2F;
