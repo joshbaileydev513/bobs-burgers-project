@@ -64,6 +64,7 @@ $("#go-button").click(function () {
             //Putting the new image as a src into the id:info pictures.
             $("#info-picture").attr("src", creditsImg);
         })
+});
 
 $("#go-button").click(function () {
     //get the season value (1-13) like we are doing with the bobs burgers api
@@ -94,4 +95,4 @@ $("#go-button").click(function () {
                     ratingPara.appendChild(imdbText);
             })
 
-}));
+});
