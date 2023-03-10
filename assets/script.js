@@ -1,71 +1,69 @@
+//Putting the bobs burger:burger of the day API url to a variable.
 var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/";
+//Putting the bobs burger:end credits sequence API url to a variable.
 var endcreditsApi = "https://bobsburgers-api.herokuapp.com/endCreditsSequence/";
 var imdbBaseUrl = "https://imdb-api.com/en/API/SeasonEpisodes/k_t49mvg28/tt1561755/";
 
 
 $("select").formSelect();
 
+//A click function to execute once the user presses the button with the id:go-button.
 $("#go-button").click(function () {
-    console.log($("#dropdown1").val());
-    console.log($("#dropdown2").val());
-
-    var season = $("#dropdown1").val();
-    var episode = $("#dropdown2").val();
-    var burgerUrl = bobApi + "?season=" + season + "&episode=" + episode;
-    var creditsUrl = endcreditsApi + "?season=" + season + "&episode=" + episode;
-
-    console.log(burgerUrl);
-    console.log(creditsUrl);
-
+    //Removes all the <h4> elements.
+    $("h4").remove();
+    //Removes all the <p> elements.
     $("p").remove();
-    //$("#info-picture").remove();
-    var burgerPara = document.createElement("p");
-    var textBurger = document.createTextNode("Burger of the day: ");
-    burgerPara.setAttribute("id", "info-text");
-    burgerPara.appendChild(textBurger);
-    document.getElementById("info").appendChild(burgerPara);
 
-    var pricePara = document.createElement("p");
-    var textPrice = document.createTextNode("Price: ");
-    pricePara.setAttribute("id", "info-text");
-    pricePara.appendChild(textPrice);
-    document.getElementById("info").appendChild(pricePara);
+    //Grabbing the season value that the user picks and putting it to a variable.
+    var season = $("#dropdown1").val();
+    //Grabbing the episode value that the user picks and putting it to a variable.
+    var episode = $("#dropdown2").val();
+    //Adding the burger of the day API url with the user picked variable.
+    var burgerUrl = bobApi + "?season=" + season + "&episode=" + episode;
+    //Adding the end credits sequence API url with the user picked variable.
+    var creditsUrl = endcreditsApi + "?season=" + season + "&episode=" + episode;
 
     fetch(burgerUrl)
         .then(function (respone) {
             return respone.json();
         })
         .then(function (data) {
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                    var burgerName = data[i].name + "  ";
-                    var burgerPrice = data[i].price + "  ";
+            //Adding a new <h4> element to the id:info.
+            $("#info").append("<h4>Burger of the Day: </h4>");
 
-                    var burgerText = document.createTextNode(burgerName);
-                    burgerPara.appendChild(burgerText);
+            //A if statement to check that the array has at least one object.
+            if (data.length >= 1) {
+                //For loop that will loop through the array.
+                for (var i = 0; i < data.length; i++) {
+                    //Grabbing the name of the burger and putting it to a variable.
+                    var burgerName = data[i].name;
+                    ////Grabbing the price of the burger and putting it to a variable.
+                    var burgerPrice = data[i].price;
 
-                    var priceText = document.createTextNode(burgerPrice);
-                    pricePara.appendChild(priceText);
+                    //Adding the burger name to the html as a <h4>.
+                    $("#info").append("<h4>Name: " + burgerName + "</h4>");
 
-                    console.log(burgerName);
-                    console.log(burgerPrice);
+                    //Adding the price of the burger to the html as a <h4>.
+                    $("#info").append("<h4>Price: " + burgerPrice + "</h4>");
+                }
+            } else {
+                //If the data array is empty add this to show the user.
+                $("#info").append("<h4>No burger of the day!</h4>");
             }
 
         })
 
+    //Putting the new end credits sequence API url into the fetch function.    
     fetch(creditsUrl)
         .then(function (respone) {
             return respone.json();
         })
         .then(function (data) {
-            console.log(data[0].image);
+            //Putting the png url into a variable but also splitting out "revision" from the url.
             var creditsImg = data[0].image.split("/revision")[0];
-            console.log(creditsImg);
+            //Putting the new image as a src into the id:info pictures.
             $("#info-picture").attr("src", creditsImg);
         })
-
-
-});
 
 $("#go-button").click(function () {
     //get the season value (1-13) like we are doing with the bobs burgers api
@@ -96,4 +94,4 @@ $("#go-button").click(function () {
                     ratingPara.appendChild(imdbText);
             })
 
-});
+}));

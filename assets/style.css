@@ -53,13 +53,13 @@
 #info-text {
     padding: 30px;
     text-align: center;
-    font-size: 30px;
+    font-size: 14px;
     font-family: sans-serif;
 }
 
 #info-picture {
-    width: 400px;
-    height: 300px;
+    width: 250px;
+    height: 150px;
     /* margin-left: 150px; */
 }
 
