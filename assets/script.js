@@ -1,5 +1,6 @@
 var bobApi = "https://bobsburgers-api.herokuapp.com/burgerOfTheDay/";
 var endcreditsApi = "https://bobsburgers-api.herokuapp.com/endCreditsSequence/";
+var imdbBaseUrl = "https://imdb-api.com/en/API/SeasonEpisodes/k_t49mvg28/tt1561755/";
 
 
 $("select").formSelect();
@@ -29,12 +30,6 @@ $("#go-button").click(function () {
     pricePara.setAttribute("id", "info-text");
     pricePara.appendChild(textPrice);
     document.getElementById("info").appendChild(pricePara);
-
-    var ratingPara = document.createElement("p");
-    var textRating = document.createTextNode("Episode Rating: ");
-    ratingPara.setAttribute("id", "info-text");
-    ratingPara.appendChild(textRating);
-    document.getElementById("info").appendChild(ratingPara);
 
     fetch(burgerUrl)
         .then(function (respone) {
@@ -69,5 +64,36 @@ $("#go-button").click(function () {
             $("#info-picture").attr("src", creditsImg);
         })
 
+
+});
+
+$("#go-button").click(function () {
+    //get the season value (1-13) like we are doing with the bobs burgers api
+    var season = $("#dropdown1").val();
+    //get the episode value like we are doing with the bobs api
+    var episode = $("#dropdown2").val();
+    var episodeNumber = (episode - 1)
+
+    //add the season value to the end of our base url above- need to figure out how to get into the array so I can then pull the IMDb rating
+    var imdbUrl = imdbBaseUrl + season;
+    var ratingPara = document.createElement("p");
+    var textRating = document.createTextNode("IMDb Rating: ");
+    ratingPara.setAttribute("id", "info-text");
+    ratingPara.appendChild(textRating);
+    document.getElementById("info").appendChild(ratingPara);
+    
+    //do a fetch
+    fetch(imdbUrl)
+        .then(function (respone) {
+            return respone.json();
+        })
+        .then(function (data) {
+            console.log(data.episodes[episodeNumber].imDbRating);
+            // now to navigate into each episode into the array- then the imDbRating
+                    var imdbRating = data.episodes[episodeNumber].imDbRating;
+                    console.log(imdbRating);
+                    var imdbText = document.createTextNode(imdbRating);
+                    ratingPara.appendChild(imdbText);
+            })
 
 });
