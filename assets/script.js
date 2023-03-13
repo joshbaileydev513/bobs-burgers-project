@@ -23,13 +23,18 @@ $("#go-button").click(function () {
     //Adding the end credits sequence API url with the user picked variable.
     var creditsUrl = endcreditsApi + "?season=" + season + "&episode=" + episode;
 
+    var episodeNumber = (episode - 1);
+
+    //Add the season value to the end of our base url above- need to figure out how to get into the array so I can then pull the IMDb rating.
+    var imdbUrl = imdbBaseUrl + season;
+
     fetch(burgerUrl)
         .then(function (respone) {
             return respone.json();
         })
         .then(function (data) {
             //Adding a new <h4> element to the id:info.
-            $("#info").append("<h4>Burger of the Day: </h4>");
+            $("#info").append("<p>Burger of the Day: </p>");
 
             //A if statement to check that the array has at least one object.
             if (data.length >= 1) {
@@ -41,10 +46,10 @@ $("#go-button").click(function () {
                     var burgerPrice = data[i].price;
 
                     //Adding the burger name to the html as a <h4>.
-                    $("#info").append("<h4>Name: " + burgerName + "</h4>");
+                    $("#info").append("<p>Name: " + burgerName + "</p>");
 
                     //Adding the price of the burger to the html as a <h4>.
-                    $("#info").append("<h4>Price: " + burgerPrice + "</h4>");
+                    $("#info").append("<p>Price: " + burgerPrice + "</p>");
                 }
             } else {
                 //If the data array is empty add this to show the user.
@@ -64,23 +69,7 @@ $("#go-button").click(function () {
             //Putting the new image as a src into the id:info pictures.
             $("#info-picture").attr("src", creditsImg);
         })
-});
 
-$("#go-button").click(function () {
-    //get the season value (1-13) like we are doing with the bobs burgers api
-    var season = $("#dropdown1").val();
-    //get the episode value like we are doing with the bobs api
-    var episode = $("#dropdown2").val();
-    var episodeNumber = (episode - 1)
-
-    //add the season value to the end of our base url above- need to figure out how to get into the array so I can then pull the IMDb rating
-    var imdbUrl = imdbBaseUrl + season;
-    var ratingPara = document.createElement("p");
-    var textRating = document.createTextNode("IMDb Rating: ");
-    ratingPara.setAttribute("id", "info-text");
-    ratingPara.appendChild(textRating);
-    document.getElementById("info").appendChild(ratingPara);
-    
     //do a fetch
     fetch(imdbUrl)
         .then(function (respone) {
@@ -89,10 +78,8 @@ $("#go-button").click(function () {
         .then(function (data) {
             console.log(data.episodes[episodeNumber].imDbRating);
             // now to navigate into each episode into the array- then the imDbRating
-                    var imdbRating = data.episodes[episodeNumber].imDbRating;
-                    console.log(imdbRating);
-                    var imdbText = document.createTextNode(imdbRating);
-                    ratingPara.appendChild(imdbText);
-            })
+            var imdbRating = data.episodes[episodeNumber].imDbRating;
+            $("#info").append("<p>IMDb Rating: " + imdbRating + "</p>");
+        })
 
 });
