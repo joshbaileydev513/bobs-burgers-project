@@ -65,7 +65,19 @@
 
 
 nav {
-    color: #ED1B2F;
-    word-spacing: 5px;
+    color: black;
+    word-spacing: 3px;
     background-color: #8cc2f5;
+    padding-left: 25px;
+    font-family: sans-serif;
+}
+
+#bobs-logo {
+    margin-top: 7px;
+}
+
+#bobs-biography-text {
+    margin-left: 18px;
+    position: absolute;
+    font-family: sans-serif;
 }
