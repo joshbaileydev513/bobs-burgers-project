@@ -8,9 +8,9 @@ In this specific challenge, our group used everything we’ve learned over the p
 
 ## User Story
 
-As a Bob’s Burgers Fan
-I want to filter episodes/seasons 
-So that I can view the individual ratings on IMDb (IMDb) in unison with the individual burger of the day for each episode (title/price end credit image).
+- As A Bob’s Burgers Fan
+- I WANT to filter by episodes/seasons 
+- SO THAT I can view the individual ratings on IMDb in unison with the individual burger of the day for each episode (title/price end credit image).
 
 ## Requirements
 
